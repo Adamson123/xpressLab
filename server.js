@@ -1,3 +1,5 @@
+//This just to confirm if it's works similarly
+
 import express from "express";
 
 const app = express();
