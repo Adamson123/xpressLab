@@ -1,4 +1,4 @@
-//This just to confirm if it's works similarly
+//This is just to confirm if it's works similarly
 
 import express from "express";
 
