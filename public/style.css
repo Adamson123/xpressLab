@@ -1,0 +1,24 @@
+h1 {
+    color: white;
+}
+a {
+    font-weight: bold;
+    color: purple;
+    font-size: 20px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.dataSpace {
+    max-width: 400px;
+    min-width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: purple;
+    padding: 20px;
+    border-radius: 10px;
+    word-wrap: break-word;
+    color: white;
+    font-size: 13px;
+}
