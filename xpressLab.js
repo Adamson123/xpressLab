@@ -148,21 +148,25 @@ class XpressLab {
         if (urlString.endsWith("/") && urlString.length > 1) {
             urlString = urlString.slice(0, -1);
         }
-        const id = urlString.slice(urlString.lastIndexOf(":") + 1);
+        
+        let id;
+        if(urlString.includes(":")){
+         id = urlString.slice(urlString.lastIndexOf(":") + 1);
         urlString = urlString.split(":")[0];
+        }
         // const urlString = urlString.slice(
         //     0,
         //     urlString.lastIndexOf(":")
         // );
 
         if (urlString.endsWith("index.html")) {
-            urlString = urlString.split("/");
-            urlString.pop();
-            urlString = urlString.join("/");
-            urlString = urlString ? urlString : "/";
+            urlString = urlString.substring(0,urlString.lastIndexOf("/index.html"))
+           // urlString.pop();
+         //   urlString = urlString.join("/");
+           urlString = urlString ? urlString : "/";
         }
 
-        console.log({ urlString, id });
+       // console.log({ urlString, id,urlString });
 
         return { urlString, id, query };
     }
@@ -210,31 +214,7 @@ class XpressLab {
             const { urlString, id, query } = this.cleanURL(req.url);
             req.query = query;
             req.params = {};
-            // let matchingRoutes = this.findMatchingRoutes(urlString, req.method);
 
-            // const singleMatchingRouteWithoutParams = matchingRoutes.find(
-            //     (route) => route.path === urlString
-            // );
-
-            // if (!singleMatchingRouteWithoutParams) {
-            //     const { routes: matchingRoutesWithParams, id: routeId } =
-            //         this.findMatchingRoutesWithParams(
-            //             urlString,
-            //             req.method
-            //         );
-
-            //     matchingRoutes = matchingRoutesWithParams;
-
-            //     const singleMatchingRouteWithParams = matchingRoutes.find(
-            //         (route) => route.path?.split(":")[0] === urlString
-            //     );
-
-            //     if (!singleMatchingRouteWithParams) {
-            //         matchingRoutes = this.findMatchingRoutes("*", req.method);
-            //     } else {
-            //         req.params[routeId] = id;
-            //     }
-            // }
             let matchingRoutes = [];
             if (id) {
                 const { routes: matchingRoutesWithParams, id: routeId } =
