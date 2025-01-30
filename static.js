@@ -1,6 +1,5 @@
 import path from "path";
 import fs from "fs";
-import { lookupService } from "dns/promises";
 
 const getContentType = (PATH) => {
     const ext = path.extname(PATH).toLowerCase().substring(1, PATH.length);
