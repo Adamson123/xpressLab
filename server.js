@@ -2,9 +2,9 @@ import express from "express";
 
 const app = express();
 
-app.get("/new:gggg:id", (req, res) => {
+app.get("/new:id", (req, res) => {
     console.log(req.params);
-    res.json({ succcssfull: req.params.id });
+    res.json({ id: req.params.id });
 });
 app.get("/", (req, res, next) => {
     res.json({ data: "A data" });

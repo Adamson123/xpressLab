@@ -14,9 +14,9 @@ method: ${req.method}
 
 server.use(xpressLab.static("public"));
 
-server.get("/new:uuid", (req, res) => {
+server.get("/new:id", (req, res) => {
     console.log(req.params);
-    res.json({ succcssfull: req.params.uuid });
+    res.json({ id: req.params.id });
 });
 
 server.get(

@@ -1,6 +1,5 @@
 import http from "http";
 import staticFunc from "./static.js";
-import url from "url";
 
 class XpressLab {
     constructor() {
@@ -12,20 +11,6 @@ class XpressLab {
             (route) => route.path === path && route.method === method
         );
     }
-    findLastRoute(path, method) {
-        return this.routes
-            .reverse()
-            .find((route) => route.path === path && route.method === method);
-    }
-    // findLastRouteIndex(path, method) {
-    //     let index;
-    //     this.routes.forEach((route, idx) => {
-    //         if (route.path === path && route.method === method) {
-    //             index = idx;
-    //         }
-    //     });
-    //     return index;
-    // }
 
     //middleware mathes path or middleware does not have path
     middlewareCondition(route, path) {
@@ -148,25 +133,23 @@ class XpressLab {
         if (urlString.endsWith("/") && urlString.length > 1) {
             urlString = urlString.slice(0, -1);
         }
-        
+
         let id;
-        if(urlString.includes(":")){
-         id = urlString.slice(urlString.lastIndexOf(":") + 1);
-        urlString = urlString.split(":")[0];
+        if (urlString.includes(":")) {
+            id = urlString.slice(urlString.indexOf(":") + 1);
+            urlString = urlString.split(":")[0];
         }
-        // const urlString = urlString.slice(
-        //     0,
-        //     urlString.lastIndexOf(":")
-        // );
 
         if (urlString.endsWith("index.html")) {
-            urlString = urlString.substring(0,urlString.lastIndexOf("/index.html"))
-           // urlString.pop();
-         //   urlString = urlString.join("/");
-           urlString = urlString ? urlString : "/";
+            urlString = urlString.substring(
+                0,
+                urlString.lastIndexOf("/index.html")
+            );
+
+            urlString = urlString ? urlString : "/";
         }
 
-       // console.log({ urlString, id,urlString });
+        // console.log({ urlString, id,urlString });
 
         return { urlString, id, query };
     }
